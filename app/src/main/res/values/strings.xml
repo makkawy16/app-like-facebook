@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">facebook</string>
+    <string name="userHint">Email or Phone</string>
+    <string name="passHint">Password</string>
+    <string name="loginbtn">Login</string>
+    <string name="forgot">
+        <a href = "https://www.facebook.com/login/identify/?ctx=recover&amp;ars=facebook_login&amp;from_login_screen=0"> Forgotten account?</a>
+    </string>
+    <string name="create">
+        <a href = "https://www.facebook.com/r.php?locale=en_GB&amp;display=page"  >Create New account</a>
+
+    </string>
+    <string name="createACC">Create New account</string>
+    <string name="myName">yousf makkawy</string>
+    <string name="now">Just Now</string>
+    <string name="upload">Upload a New photo</string>
+    <string name="caption">Wild and Free Just Like the sea</string>
+    <string name="like">like</string>
+    <string name="comm">Comment</string>
+    <string name="share">Share</string>
+    <string name="logout">Logout</string>
+    <string name="create_account">Create account</string>
+    <string name="back">Back</string>
+</resources>

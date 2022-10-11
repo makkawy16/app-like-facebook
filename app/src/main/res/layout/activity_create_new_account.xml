@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.CreateNewAccount">
+
+
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/facephoto"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_160sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/facephoto"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gLine"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_1sdp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3"
+        />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/email_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/gLine"
+        android:layout_margin="@dimen/_10sdp"
+        app:boxStrokeColor="@color/blue"
+        app:boxStrokeWidth="@dimen/_2sdp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:backgroundTint="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_6sdp"
+            android:drawablePadding="@dimen/_8sdp"
+            android:hint="@string/userHint"
+            android:inputType="textEmailAddress"
+
+            />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pass_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_15sdp"
+        app:layout_constraintTop_toBottomOf="@id/email_layout"
+        app:passwordToggleEnabled="true"
+        android:backgroundTint="@color/white"
+        app:boxStrokeColor="@color/blue"
+        app:boxStrokeWidth="@dimen/_2sdp"
+
+
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pass_text"
+            android:backgroundTint="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPassword"
+            android:hint="@string/passHint"
+
+
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/create_acc_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:backgroundTint="@color/btnColor"
+        android:text="@string/create_account"
+        android:textAllCaps="false"
+        android:textColor="@color/gray"
+        app:cornerRadius="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pass_layout" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/back_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back"
+        android:focusable="true"
+        app:layout_constraintTop_toBottomOf="@id/create_acc_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:textColor="@color/blue"
+        android:textStyle="bold"/>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

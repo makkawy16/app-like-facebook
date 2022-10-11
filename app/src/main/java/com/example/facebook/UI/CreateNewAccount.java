@@ -103,4 +103,3 @@ public class CreateNewAccount extends AppCompatActivity {
     }
 }
 
-//test comment

@@ -4,10 +4,10 @@
     <string name="passHint">Password</string>
     <string name="loginbtn">Login</string>
     <string name="forgot">
-        <a href = "https://www.facebook.com/login/identify/?ctx=recover&amp;ars=facebook_login&amp;from_login_screen=0"> Forgotten account?</a>
+        <a href="https://www.facebook.com/login/identify/?ctx=recover&amp;ars=facebook_login&amp;from_login_screen=0"> Forgotten account?</a>
     </string>
     <string name="create">
-        <a href = "https://www.facebook.com/r.php?locale=en_GB&amp;display=page"  >Create New account</a>
+        <a href="https://www.facebook.com/r.php?locale=en_GB&amp;display=page">Create New account</a>
 
     </string>
     <string name="createACC">Create New account</string>
@@ -21,4 +21,9 @@
     <string name="logout">Logout</string>
     <string name="create_account">Create account</string>
     <string name="back">Back</string>
+    <string name="username">Username</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="select_your_gender">Select Your Gender</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.example.facebook.Model;
 
-public class UserModel {
+import java.io.Serializable;
+
+public class UserModel implements Serializable {
     private String UserID,name, email, password, phone, imgUrl, gender ;
     private int age;
 

@@ -52,7 +52,7 @@
 
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/phone"
+                android:id="@+id/phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -61,6 +61,22 @@
                 android:padding="@dimen/_8sdp"
                 android:layout_margin="@dimen/_10sdp"/>
 
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="@color/blue"
+            app:boxStrokeWidth="@dimen/_2sdp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:hint="Age"
+                android:textColorHint="@color/black"
+                android:padding="@dimen/_8sdp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textview.MaterialTextView

@@ -3,10 +3,10 @@ package com.example.facebook.Model;
 import java.io.Serializable;
 
 public class UserModel implements Serializable {
-    private String UserID,name, email, password, phone, imgUrl, gender ;
-    private int age;
+    private String UserID,name, email, password, phone, imgUrl, gender ,age;
 
-    public UserModel(String userID, String name, String email, String password, String phone, String imgUrl, String gender, int age) {
+
+    public UserModel(String userID, String name, String email, String password, String phone, String imgUrl, String gender, String age) {
         UserID = userID;
         this.name = name;
         this.email = email;
@@ -76,11 +76,11 @@ public class UserModel implements Serializable {
         this.gender = gender;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 }

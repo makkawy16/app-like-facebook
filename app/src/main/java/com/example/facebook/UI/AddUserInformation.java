@@ -13,6 +13,7 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.Switch;
@@ -20,11 +21,22 @@ import android.widget.Toast;
 
 import com.example.facebook.R;
 import com.example.facebook.databinding.ActivityAddUserInformationBinding;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class AddUserInformation extends AppCompatActivity {
 
+    String name, age, gender, phone, email, password , imgurl ;
+    Uri imguri;
 
     ActivityAddUserInformationBinding binding;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+    StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +44,8 @@ public class AddUserInformation extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        checkGender();
+        //checkGender();
+
 
         binding.profilePicture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +55,35 @@ public class AddUserInformation extends AppCompatActivity {
         });
 
 
+    }
+
+    private void initUi() {
+
+    }
+
+    private void addUserToDatabase() {
+
+    }
+
+    private void addPhotoToStorage(Uri imguri){
+
+        final StorageReference file = storageReference.child("test img");
+
+        file.putFile(imguri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                file.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        imgurl = uri.toString();
+                        Toast.makeText(AddUserInformation.this, "upload success", Toast.LENGTH_SHORT).show();
+                        Log.d("ddddddddd" , ""+ imgurl);
+
+                    }
+                });
+            }
+        });
+
 
     }
 
@@ -50,44 +92,46 @@ public class AddUserInformation extends AppCompatActivity {
             new ActivityResultCallback<Uri>() {
                 @Override
                 public void onActivityResult(Uri result) {
-               binding.profilePicture.setImageURI(result);
+                    binding.profilePicture.setImageURI(result);
+                    imguri = result;
+                    addPhotoToStorage(imguri);
                 }
             });
 
+
     private ActivityResultLauncher<String> requestPermissionLancher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(),isGranted -> {
-                if(isGranted){
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
                     getImage();
-                }
-                else{
+                } else {
                     Toast.makeText(this, "need permission to access gallery ", Toast.LENGTH_SHORT).show();
                 }
             });
+
 
     private void getImage() {
         imageLancher.launch("image/*");
     }
 
-    private void addPhoto(){
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED){
+
+    private void addPhoto() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             imageLancher.launch("image/*");
-        }
-        else if (ActivityCompat.shouldShowRequestPermissionRationale(this , Manifest.permission.READ_EXTERNAL_STORAGE)){
+        } else if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
             alertDialog("need this Permission to add your photo");
-        }
-        else{
+        } else {
             requestPermissionLancher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
         }
     }
 
 
-    private void checkGender(){
+    private void checkGender() {
         binding.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                if (binding.genderMale.isChecked() || binding.genderFemale.isChecked()){
-                    switch(checkedId){
+                if (binding.genderMale.isChecked() || binding.genderFemale.isChecked()) {
+                    switch (checkedId) {
 
                         case R.id.gender_male:
                             Toast.makeText(AddUserInformation.this, "male", Toast.LENGTH_SHORT).show();
@@ -98,15 +142,14 @@ public class AddUserInformation extends AppCompatActivity {
                         default:
                             Toast.makeText(AddUserInformation.this, "Select your Gender", Toast.LENGTH_SHORT).show();
                     }
-                }
-                else{
+                } else {
                     Toast.makeText(AddUserInformation.this, "Select your Gender", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    private void alertDialog(String msg){
+    private void alertDialog(String msg) {
 
         final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setTitle(msg);

@@ -124,7 +124,6 @@ public class AddUserInformation extends AppCompatActivity {
         imageLancher.launch("image/*");
     }
 
-//sssg
     private void addPhoto() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             imageLancher.launch("image/*");

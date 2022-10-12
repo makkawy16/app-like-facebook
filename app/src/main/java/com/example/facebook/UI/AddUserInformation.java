@@ -54,8 +54,8 @@ public class AddUserInformation extends AppCompatActivity {
         setContentView(view);
 
         initUi();
-        //   Log.d("dddddddd" ,""+email);
-        //   Log.d("dddddddd" ,""+password);
+           Log.d("dddddddd" ,""+email);
+           Log.d("dddddddd" ,""+password);
 
 
         binding.continueBTN.setOnClickListener(new View.OnClickListener() {

@@ -30,7 +30,7 @@ import com.google.firebase.storage.UploadTask;
 
 public class AddUserInformation extends AppCompatActivity {
 
-    String name, age, gender, phone, email, password , imgurl ;
+    String name, age, gender, phone, email, password, imgurl;
     Uri imguri;
 
     ActivityAddUserInformationBinding binding;
@@ -45,6 +45,9 @@ public class AddUserInformation extends AppCompatActivity {
         setContentView(view);
 
         //checkGender();
+        initUi();
+        Log.d("dddddddd" ,""+email);
+        Log.d("dddddddd" ,""+password);
 
 
         binding.profilePicture.setOnClickListener(new View.OnClickListener() {
@@ -58,14 +61,22 @@ public class AddUserInformation extends AppCompatActivity {
     }
 
     private void initUi() {
+        name = binding.username.getText().toString();
+        age = binding.age.getText().toString();
+        email = getIntent().getStringExtra("email");
+        password = getIntent().getStringExtra("password");
 
     }
 
     private void addUserToDatabase() {
+        initUi();
+        checkGender();
+
+
 
     }
 
-    private void addPhotoToStorage(Uri imguri){
+    private void addPhotoToStorage(Uri imguri) {
 
         final StorageReference file = storageReference.child("test img");
 
@@ -77,7 +88,7 @@ public class AddUserInformation extends AppCompatActivity {
                     public void onSuccess(Uri uri) {
                         imgurl = uri.toString();
                         Toast.makeText(AddUserInformation.this, "upload success", Toast.LENGTH_SHORT).show();
-                        Log.d("ddddddddd" , ""+ imgurl);
+                        Log.d("ddddddddd", "" + imgurl);
 
                     }
                 });
@@ -113,7 +124,7 @@ public class AddUserInformation extends AppCompatActivity {
         imageLancher.launch("image/*");
     }
 
-
+//sssg
     private void addPhoto() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             imageLancher.launch("image/*");
@@ -133,12 +144,18 @@ public class AddUserInformation extends AppCompatActivity {
                 if (binding.genderMale.isChecked() || binding.genderFemale.isChecked()) {
                     switch (checkedId) {
 
-                        case R.id.gender_male:
+                        case R.id.gender_male: {
                             Toast.makeText(AddUserInformation.this, "male", Toast.LENGTH_SHORT).show();
-                            break;
-                        case R.id.gender_female:
+                            gender = "Male";
+
+                        }
+                        break;
+                        case R.id.gender_female: {
                             Toast.makeText(AddUserInformation.this, "female", Toast.LENGTH_SHORT).show();
-                            break;
+                            gender = "Female";
+                        }
+
+                        break;
                         default:
                             Toast.makeText(AddUserInformation.this, "Select your Gender", Toast.LENGTH_SHORT).show();
                     }

@@ -84,7 +84,7 @@ public class CreateNewAccount extends AppCompatActivity {
                         if (task.isSuccessful())
                         {
                             mloadingBar.dismiss();
-                            Intent intent = new Intent(CreateNewAccount.this,welcome.class);
+                            Intent intent = new Intent(CreateNewAccount.this,AddUserInformation.class);
                             intent.putExtra("email",email);
                             intent.putExtra("password",password);
                             startActivity(intent);

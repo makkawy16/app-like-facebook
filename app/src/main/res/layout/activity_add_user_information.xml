@@ -111,6 +111,15 @@
 
         </RadioGroup>
 
+<com.google.android.material.button.MaterialButton
+    android:id="@+id/continueBTN"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginHorizontal="@dimen/_15sdp"
+    app:cornerRadius="@dimen/_15sdp"
+    android:text="@string/finish"
+    android:textAllCaps="false"/>
 
 
 

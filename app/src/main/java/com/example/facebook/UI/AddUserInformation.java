@@ -3,6 +3,7 @@ package com.example.facebook.UI;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -10,6 +11,7 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,9 +21,13 @@ import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.example.facebook.Model.UserModel;
 import com.example.facebook.R;
 import com.example.facebook.databinding.ActivityAddUserInformationBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -32,10 +38,13 @@ public class AddUserInformation extends AppCompatActivity {
 
     String name, age, gender, phone, email, password, imgurl;
     Uri imguri;
+    public final String dataBaseName = "users";
 
     ActivityAddUserInformationBinding binding;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +53,17 @@ public class AddUserInformation extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        //checkGender();
         initUi();
-        Log.d("dddddddd" ,""+email);
-        Log.d("dddddddd" ,""+password);
+        //   Log.d("dddddddd" ,""+email);
+        //   Log.d("dddddddd" ,""+password);
+
+
+        binding.continueBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addUserToDatabase();
+            }
+        });
 
 
         binding.profilePicture.setOnClickListener(new View.OnClickListener() {
@@ -65,20 +81,35 @@ public class AddUserInformation extends AppCompatActivity {
         age = binding.age.getText().toString();
         email = getIntent().getStringExtra("email");
         password = getIntent().getStringExtra("password");
-
+        phone = binding.phoneNumber.getText().toString();
+        gender = checkGender();
+        userId = mAuth.getUid();
     }
 
     private void addUserToDatabase() {
         initUi();
-        checkGender();
-
+        //  checkGender();
+        UserModel userModel = new UserModel(userId, name, email, password, phone, imgurl, gender, age);
+        databaseReference.child(dataBaseName).child(userId + " " +name).setValue(userModel)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(AddUserInformation.this, "Welcome " + name, Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(AddUserInformation.this,welcome.class));
+                            finish();
+                        }
+                        else
+                            alertDialog("Error " + task.getException().getLocalizedMessage());
+                    }
+                });
 
 
     }
 
     private void addPhotoToStorage(Uri imguri) {
 
-        final StorageReference file = storageReference.child("test img");
+        final StorageReference file = storageReference.child(userId + "  " + name);
 
         file.putFile(imguri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -135,7 +166,7 @@ public class AddUserInformation extends AppCompatActivity {
     }
 
 
-    private void checkGender() {
+    private String checkGender() {
         binding.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -163,6 +194,7 @@ public class AddUserInformation extends AppCompatActivity {
                 }
             }
         });
+        return gender;
     }
 
     private void alertDialog(String msg) {

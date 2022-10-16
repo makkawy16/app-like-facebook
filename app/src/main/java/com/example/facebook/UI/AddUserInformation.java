@@ -96,7 +96,12 @@ public class AddUserInformation extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(AddUserInformation.this, "Welcome " + name, Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(AddUserInformation.this,welcome.class));
+                            Intent intent =new Intent(AddUserInformation.this,welcome.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("user",userModel);
+                            intent.putExtras(bundle);
+
+                            startActivity(intent);
                             finish();
                         }
                         else

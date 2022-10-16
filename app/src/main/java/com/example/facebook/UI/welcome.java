@@ -5,22 +5,36 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.example.facebook.Model.UserModel;
 import com.example.facebook.R;
+import com.example.facebook.databinding.ActivityWelcomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
 public class welcome extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    ActivityWelcomeBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
         //getSupportActionBar().hide();
         mAuth=FirebaseAuth.getInstance();
+
+        UserModel user = (UserModel) getIntent().getExtras().getSerializable("user");
+        Log.d("dddddd", "onCreate: " + user);
+        Log.d("dddddddd", "onCreate: " + user.getName());
+        binding.profileName.setText(user.getName());
+        Picasso.get().load(user.getImgUrl()).into(binding.profilePicHome);
 
     }
 

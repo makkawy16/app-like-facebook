@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,6 +15,7 @@ import com.example.facebook.Model.UserModel;
 import com.example.facebook.R;
 import com.example.facebook.databinding.ActivityWelcomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 public class welcome extends AppCompatActivity {
@@ -29,12 +31,6 @@ public class welcome extends AppCompatActivity {
         setContentView(view);
         //getSupportActionBar().hide();
         mAuth=FirebaseAuth.getInstance();
-
-        UserModel user = (UserModel) getIntent().getExtras().getSerializable("user");
-        Log.d("dddddd", "onCreate: " + user);
-        Log.d("dddddddd", "onCreate: " + user.getName());
-        binding.profileName.setText(user.getName());
-        Picasso.get().load(user.getImgUrl()).into(binding.profilePicHome);
 
     }
 

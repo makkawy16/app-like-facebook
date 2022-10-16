@@ -12,6 +12,7 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,13 +34,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.google.gson.Gson;
 
 public class AddUserInformation extends AppCompatActivity {
 
     String name, age, gender, phone, email, password, imgurl;
     Uri imguri;
     public final String dataBaseName = "users";
-
     ActivityAddUserInformationBinding binding;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
@@ -88,7 +89,6 @@ public class AddUserInformation extends AppCompatActivity {
 
     private void addUserToDatabase() {
         initUi();
-        //  checkGender();
         UserModel userModel = new UserModel(userId, name, email, password, phone, imgurl, gender, age);
         databaseReference.child(dataBaseName).child(userId + " " +name).setValue(userModel)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -96,6 +96,7 @@ public class AddUserInformation extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(AddUserInformation.this, "Welcome " + name, Toast.LENGTH_SHORT).show();
+
                             Intent intent =new Intent(AddUserInformation.this,welcome.class);
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("user",userModel);

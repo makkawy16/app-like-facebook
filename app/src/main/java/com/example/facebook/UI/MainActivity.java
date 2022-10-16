@@ -77,16 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void validate() {
-        if (email.isEmpty())
-            binding.email.setError("Please Enter Email or Phone Number");
-        else if (password.isEmpty())
-            binding.passText.setError("PLease Enter Password");
 
-        else
-            Toast.makeText(MainActivity.this, "Failed Login", Toast.LENGTH_LONG).show();
-
-    }
 
 
     void signin() {
@@ -98,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        // waitnig();
                         if (task.isSuccessful()) {
                             startActivity(new Intent(MainActivity.this, welcome.class));
                             mloadingBar.dismiss();

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_newpost_graph"
+    app:startDestination="@id/postsFragment2">
+    <fragment
+        android:id="@+id/postsFragment2"
+        android:name="com.example.facebook.UI.PostsFragment"
+        android:label="fragment_posts"
+        tools:layout="@layout/fragment_posts" >
+        <action
+            android:id="@+id/action_postsFragment2_to_addNewPostFragment2"
+            app:destination="@id/addNewPostFragment2"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewPostFragment2"
+        android:name="com.example.facebook.UI.AddNewPostFragment"
+        android:label="fragment_add_new_post"
+        tools:layout="@layout/fragment_add_new_post" >
+        <action
+            android:id="@+id/action_addNewPostFragment2_to_postsFragment2"
+            app:destination="@id/postsFragment2"
+            app:popUpTo="@id/nav_newpost_graph"
+            app:popUpToInclusive="true"/>
+    </fragment>
+</navigation>

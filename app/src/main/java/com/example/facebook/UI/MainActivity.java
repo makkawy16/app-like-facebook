@@ -44,9 +44,10 @@ public class MainActivity extends AppCompatActivity {
 
         currentUser = mAuth.getCurrentUser();
 
-        if (currentUser != null)
+        if (currentUser != null) {
             startActivity(new Intent(MainActivity.this, HomePage.class));
-        else
+            finish();
+        } else
             Toast.makeText(this, "must make a Login", Toast.LENGTH_SHORT).show();
 
 
@@ -66,16 +67,16 @@ public class MainActivity extends AppCompatActivity {
                     binding.email.setError("Please Enter Email or Phone Number");
                 else if (binding.passText.getText().toString().isEmpty())
                     binding.passText.setError("PLease Enter Password");
-                else
+                else{
                     signin();
+
+                }
 
             }
         });
 
 
     }
-
-
 
 
     void signin() {

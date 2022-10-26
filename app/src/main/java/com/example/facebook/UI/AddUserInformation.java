@@ -12,14 +12,12 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioGroup;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.facebook.Model.UserModel;
@@ -34,7 +32,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.google.gson.Gson;
 
 public class AddUserInformation extends AppCompatActivity {
 
@@ -90,14 +87,14 @@ public class AddUserInformation extends AppCompatActivity {
     private void addUserToDatabase() {
         initUi();
         UserModel userModel = new UserModel(userId, name, email, password, phone, imgurl, gender, age);
-        databaseReference.child(dataBaseName).child(userId + " " +name).setValue(userModel)
+        databaseReference.child(dataBaseName).child(userId).setValue(userModel)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(AddUserInformation.this, "Welcome " + name, Toast.LENGTH_SHORT).show();
 
-                            Intent intent =new Intent(AddUserInformation.this,welcome.class);
+                            Intent intent =new Intent(AddUserInformation.this, HomePage.class);
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("user",userModel);
                             intent.putExtras(bundle);

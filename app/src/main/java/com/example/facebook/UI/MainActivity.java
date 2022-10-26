@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.facebook.R;
@@ -47,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser();
 
         if (currentUser != null)
-            startActivity(new Intent(MainActivity.this, welcome.class));
+            startActivity(new Intent(MainActivity.this, HomePage.class));
         else
             Toast.makeText(this, "must make a Login", Toast.LENGTH_SHORT).show();
 
@@ -90,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            startActivity(new Intent(MainActivity.this, welcome.class));
+                            startActivity(new Intent(MainActivity.this, HomePage.class));
                             mloadingBar.dismiss();
                             finish();
 

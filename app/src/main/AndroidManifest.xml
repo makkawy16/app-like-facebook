@@ -27,7 +27,7 @@
             android:name=".UI.CreateNewAccount"
             android:exported="false" />
         <activity
-            android:name=".UI.welcome"
+            android:name=".UI.HomePage"
             android:exported="false" />
         <activity
             android:name=".splash"

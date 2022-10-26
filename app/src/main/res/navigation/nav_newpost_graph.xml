@@ -12,6 +12,7 @@
         <action
             android:id="@+id/action_postsFragment2_to_addNewPostFragment2"
             app:destination="@id/addNewPostFragment2"
+
             />
     </fragment>
     <fragment
@@ -22,6 +23,8 @@
         <action
             android:id="@+id/action_addNewPostFragment2_to_postsFragment2"
             app:destination="@id/postsFragment2"
+
+
             app:popUpTo="@id/nav_newpost_graph"
             app:popUpToInclusive="true"/>
     </fragment>

@@ -39,24 +39,7 @@ public class HomePage extends AppCompatActivity {
     }
 
     private void userInfo(String userId) {
-        databaseReference.child("users").child(userId)
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        UserModel user = snapshot.getValue(UserModel.class);
-                        Log.d("dddddddd", "onDataChange: " + user);
-                        binding.profileName.setText(user.getName());
-                        Picasso.get().load(user.getImgUrl()).into(binding.profilePicHome);
-                        Picasso.get().load(user.getImgUrl()).into(binding.myImg);
 
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
 
     }
 

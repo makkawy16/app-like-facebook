@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/post_background_color"
+    android:layout_marginBottom="@dimen/_8sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/_8sdp"
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_pic_home"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/my_photo" />
+
+        <LinearLayout
+            android:id="@+id/Liner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/myName"
+                android:textStyle="bold">
+
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/nowtxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="@string/now"
+                android:textColor="@color/grayAghm2"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:text="@string/upload"
+            android:textColor="@color/grayAghm2"
+
+            />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/myImg"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        android:text="@string/caption"
+        android:textStyle="bold"
+        android:textSize="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        />
+
+    <ImageView
+        android:id="@+id/myImg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_300sdp"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_26sdp"
+        android:src="@drawable/my_photo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+
+        />
+
+
+    <LinearLayout
+        android:id="@+id/liner_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/myImg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/_8sdp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/likeBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_4sdp"
+            android:text="@string/like"
+            android:textAllCaps="false"
+            android:textColor="@color/grayAghm2"
+            android:backgroundTint="@color/white"
+            app:icon="@drawable/ic_like"
+            app:iconTint="@color/grayAghm2"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/commentBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:text="@string/comm"
+            android:textAllCaps="false"
+            android:textColor="@color/grayAghm2"
+            android:backgroundTint="@color/white"
+            app:icon="@drawable/ic_comment"
+            app:iconTint="@color/grayAghm2"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/shareBTN"
+            android:layout_width="@dimen/_95sdp"
+            android:layout_height="wrap_content"
+            android:text="@string/share"
+            android:textAllCaps="false"
+            android:textColor="@color/grayAghm2"
+            android:backgroundTint="@color/white"
+            app:icon="@drawable/ic_share"
+            app:iconTint="@color/grayAghm2"
+            />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

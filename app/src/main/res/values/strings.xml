@@ -28,4 +28,5 @@
     <string name="select_your_gender">Select Your Gender</string>
     <string name="finish">Continue</string>
     <string name="age">Age</string>
+    <string name="add_new_post">Add New Post</string>
 </resources>

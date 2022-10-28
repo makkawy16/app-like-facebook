@@ -35,7 +35,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.postViewHold
         holder.binding.profileName.setText(post.getUserName());
         holder.binding.postTitle.setText(post.getPostTitle());
         Picasso.get().load(post.getUserProfilePic()).into(holder.binding.profilePicHome);
-        Picasso.get().load(post.getUploadedPhotoURl()).into(holder.binding.myImg);
+        if (post.getUploadedPhotoURl() != null)
+            Picasso.get().load(post.getUploadedPhotoURl()).into(holder.binding.myImg);
 
     }
 

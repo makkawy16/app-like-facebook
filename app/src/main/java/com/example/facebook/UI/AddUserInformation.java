@@ -37,7 +37,7 @@ public class AddUserInformation extends AppCompatActivity {
 
     String name, age, gender, phone, email, password, imgurl;
     Uri imguri;
-    public final String dataBaseName = "users";
+    public static final String dataBaseName = "users";
     ActivityAddUserInformationBinding binding;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();

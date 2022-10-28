@@ -1,13 +1,12 @@
 package com.example.facebook.UI.Adapter;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.facebook.Model.PostModel;
+import com.example.facebook.data.Model.PostModel;
 import com.example.facebook.databinding.ItemPostLayoutBinding;
 import com.squareup.picasso.Picasso;
 

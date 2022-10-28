@@ -20,7 +20,7 @@ import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.facebook.Model.UserModel;
+import com.example.facebook.data.Model.UserModel;
 import com.example.facebook.R;
 import com.example.facebook.databinding.ActivityAddUserInformationBinding;
 import com.google.android.gms.tasks.OnCompleteListener;

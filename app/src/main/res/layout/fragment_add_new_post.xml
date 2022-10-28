@@ -45,18 +45,19 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/post_title_add"
-        android:layout_marginTop="@dimen/_10sdp"
         android:layout_width="match_parent"
-        android:layout_below="@id/top_bar"
         android:layout_height="@dimen/_250sdp"
-        android:hint="@string/what_s_in_your_mind"
-        android:gravity="start"/>
+        android:layout_below="@id/top_bar"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:gravity="start"
+        android:hint="@string/what_s_in_your_mind" />
+
     <ImageView
         android:id="@+id/add_photo_new_post"
         android:layout_width="@dimen/_35sdp"
         android:layout_height="@dimen/_35sdp"
         android:layout_below="@id/post_title_add"
-        android:src="@drawable/add_img_icon"/>
+        android:src="@drawable/add_img_icon" />
     <ImageView
         android:id="@+id/photo_selected"
         android:layout_width="@dimen/_80sdp"
@@ -64,6 +65,14 @@
         android:layout_below="@id/add_photo_new_post"
         android:layout_marginTop="@dimen/_8sdp"
         tools:src="@color/blue"/>
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
 
 
 </RelativeLayout>

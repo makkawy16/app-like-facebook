@@ -1,4 +1,4 @@
-package com.example.facebook.Model;
+package com.example.facebook.data.Model;
 
 import java.io.Serializable;
 

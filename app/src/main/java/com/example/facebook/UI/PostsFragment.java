@@ -103,4 +103,6 @@ public class PostsFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+    //comment
+    
 }

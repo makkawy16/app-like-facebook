@@ -4,6 +4,9 @@ public class PostModel {
 
     String userId , userName , userProfilePic , postTitle , uploadedPhotoURl;
 
+    public PostModel() {
+    }
+
     public PostModel(String userId, String userName, String userProfilePic, String postTitle, String uploadedPhotoURl) {
         this.userId = userId;
         this.userName = userName;

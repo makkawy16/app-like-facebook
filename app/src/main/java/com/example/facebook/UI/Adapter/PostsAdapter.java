@@ -1,6 +1,8 @@
 package com.example.facebook.UI.Adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -14,9 +16,11 @@ import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.postViewHolder> {
     List<PostModel> posts;
+    Context context;
 
-    public void addPost(List<PostModel> posts) {
+    public void addPost(List<PostModel> posts, Context context) {
         this.posts = posts;
+        this.context = context;
         notifyDataSetChanged();
     }
 
@@ -34,8 +38,14 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.postViewHold
         holder.binding.profileName.setText(post.getUserName());
         holder.binding.postTitle.setText(post.getPostTitle());
         Picasso.get().load(post.getUserProfilePic()).into(holder.binding.profilePicHome);
-        if (post.getUploadedPhotoURl() != null)
+        if (!post.getUploadedPhotoURl().equals(""))
             Picasso.get().load(post.getUploadedPhotoURl()).into(holder.binding.myImg);
+
+        else{
+            holder.binding.myImg.setVisibility(View.GONE);
+            holder.binding.postTitle.setTextSize(15);
+        }
+
 
     }
 

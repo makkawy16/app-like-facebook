@@ -2,8 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/post_background_color"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginBottom="@dimen/_8sdp"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -13,6 +14,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:paddingBottom="@dimen/_10sdp"
         app:layout_constraintTop_toTopOf="parent"
         >
 
@@ -71,9 +73,11 @@
         app:layout_constraintTop_toBottomOf="@id/linearLayout"
         android:text="@string/caption"
         android:textStyle="bold"
+        android:padding="@dimen/_10sdp"
         android:textSize="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_20sdp"
+
         />
 
     <ImageView
@@ -82,7 +86,7 @@
         android:layout_height="@dimen/_300sdp"
         android:layout_marginHorizontal="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_26sdp"
-        android:src="@drawable/my_photo"
+        tools:src="@drawable/my_photo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
@@ -97,7 +101,8 @@
         app:layout_constraintTop_toBottomOf="@id/myImg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="@dimen/_8sdp">
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_10sdp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/likeBTN"
@@ -136,6 +141,15 @@
             />
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_marginHorizontal="@dimen/_4sdp"
+        app:layout_constraintTop_toBottomOf="@id/liner_btn"
+        android:background="@color/blue"
+        />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

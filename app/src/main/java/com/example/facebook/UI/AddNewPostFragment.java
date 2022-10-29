@@ -96,6 +96,7 @@ public class AddNewPostFragment extends Fragment {
             }
         });
 
+
     }
 
     private void getUserInfo(String userId) {
@@ -130,9 +131,12 @@ public class AddNewPostFragment extends Fragment {
             , new ActivityResultCallback<Uri>() {
                 @Override
                 public void onActivityResult(Uri result) {
-                    imguri = result;
-                    binding.photoSelected.setImageURI(imguri);
-                    addPhotoToStorage(imguri);
+                    if (result != null) {
+
+                        imguri = result;
+                        binding.photoSelected.setImageURI(imguri);
+                        addPhotoToStorage(imguri);
+                    }
                 }
             });
 

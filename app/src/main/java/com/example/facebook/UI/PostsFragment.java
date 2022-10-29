@@ -1,7 +1,5 @@
 package com.example.facebook.UI;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,11 +8,9 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.facebook.R;
 import com.example.facebook.UI.Adapter.PostsAdapter;
@@ -36,7 +32,9 @@ public class PostsFragment extends Fragment {
     FragmentPostsBinding binding;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     PostsAdapter postsAdapter;
-    ArrayList<PostModel> postsList = new ArrayList<>();
+    List<PostModel> postsList = new ArrayList<>();
+    String name , profilePicUrl , postimgUrl,postTitle;
+    String userId = FirebaseAuth.getInstance().getUid();
     public PostsFragment() {
         // Required empty public constructor
     }
@@ -78,25 +76,23 @@ public class PostsFragment extends Fragment {
     }
 
     private void getPosts(){
-        Log.d("ddddddddddddddd", "getPosts: ");
+
 
         databaseReference.child("posts").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 postsList.clear();
-               for (DataSnapshot snapshot1 : snapshot.getChildren()){
-                   Log.d("dddddddddd", "onDataChange: snapchot 1 " + snapshot1);
-                   postsList.add(snapshot1.getValue(PostModel.class));
-               }
+                for (DataSnapshot snapshot1 : snapshot.getChildren()){
+                    postsList.add(snapshot1.getValue(PostModel.class));
+                    binding.loading.setVisibility(View.GONE);
+                }
                 postsAdapter.addPost(postsList , getContext());
-                Log.d("dddddddddddd", "onDataChange: list " + postsList);
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                /*Toast.makeText(getActivity(), ""+error.getDetails(), Toast.LENGTH_SHORT).show();
-                alertDialog("Error getting Pots " , error.getDetails());*/
+
             }
         });
     }
@@ -107,6 +103,4 @@ public class PostsFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
-
 }

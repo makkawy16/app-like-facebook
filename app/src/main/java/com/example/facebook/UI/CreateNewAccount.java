@@ -3,7 +3,9 @@ package com.example.facebook.UI;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,7 +44,11 @@ public class CreateNewAccount extends AppCompatActivity {
        binding.createAccBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CreateUser();
+
+                if (binding.email.getText().toString().isEmpty() ||binding.passText.getText().toString().isEmpty() )
+                    alertDialog("Error" , "all fields required");
+                else
+                    CreateUser();
             }
         });
 
@@ -100,6 +106,30 @@ public class CreateNewAccount extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    private void alertDialog(String title, String msg) {
+
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setMessage(msg);
+        dialog.setTitle(title);
+        dialog.setCancelable(false);
+        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(CreateNewAccount.this,MainActivity.class));
+        finish();
     }
 }
 
